@@ -3,7 +3,7 @@
 
 .auth-layout {
   min-height: 100vh;
-  background: #FFFFFF;
+  background: $white;
 
   &__logo {
     position: absolute;
@@ -23,7 +23,7 @@
   &__logo-text {
     font-size: 22px;
     font-weight: 700;
-    color: #213F7D;
+    color: $primary-dark;
     letter-spacing: -0.5px;
   }
 
@@ -61,8 +61,9 @@
   }
 
   &__illustration-svg {
+    bottom: -10%;
     width: 100%;
-    max-width: 480px;
+    max-width: 600px;
     position: relative;
     z-index: 1;
   }
