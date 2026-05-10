@@ -1,0 +1,89 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.auth-layout {
+  min-height: 100vh;
+  background: $white;
+
+  &__logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+
+    @include mobile {
+      top: 24px;
+      left: 24px;
+    }
+  }
+
+  &__logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: $primary-dark;
+    letter-spacing: -0.5px;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__illustration {
+    background: linear-gradient(135deg, #e8f8f8 0%, #f0f4ff 100%);
+    @include flex-center;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba($primary, 0.08);
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__illustration-svg {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__form-wrapper {
+    @include flex-center;
+    padding: 40px 24px;
+    padding-top: 100px;
+
+    @include mobile {
+      padding: 80px 24px 40px;
+      align-items: flex-start;
+    }
+  }
+
+  &__form-box {
+    width: 100%;
+    max-width: 400px;
+
+    @include tablet {
+      padding: 0 20px;
+    }
+  }
+}

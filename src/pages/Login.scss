@@ -1,0 +1,142 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.login-page {
+  &__title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: $primary-dark;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  &__subtitle {
+    font-size: $font-size-base;
+    color: $text-muted;
+    margin-bottom: 40px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  &__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgba($primary-dark, 0.2);
+    border-radius: $radius-sm;
+    padding: 0 16px;
+    font-size: $font-size-sm;
+    color: $text-body;
+    outline: none;
+    transition: border-color 0.2s;
+    background: white;
+
+    &::placeholder { color: rgba($text-body, 0.4); }
+
+    &:focus { border-color: $primary; }
+
+    &--password { padding-right: 60px; }
+
+    &--error { border-color: #e4033b; }
+  }
+
+  &__toggle-password {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 0 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: $primary;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: color 0.2s;
+
+    &:hover { color: darken($primary, 10%); }
+  }
+
+  &__error-msg {
+    font-size: 11px;
+    color: #e4033b;
+    margin-top: 4px;
+  }
+
+  &__forgot {
+    text-align: right;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    color: $primary;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none;
+
+    &:hover { color: darken($primary, 10%); }
+  }
+
+  &__submit {
+    width: 100%;
+    height: 50px;
+    background: $primary;
+    color: white;
+    border: none;
+    border-radius: $radius-sm;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    @include flex-center;
+    gap: 8px;
+    margin-top: 8px;
+
+    &:hover:not(:disabled) {
+      background: darken($primary, 8%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba($primary, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  &__loading-dot {
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: blink 0.6s infinite alternate;
+
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+
+  @keyframes blink {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); }
+  }
+}

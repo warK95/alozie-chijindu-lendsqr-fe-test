@@ -1,0 +1,352 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: $white;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06);
+    @include flex-between;
+    padding: 0 30px;
+    z-index: 100;
+    gap: 16px;
+
+    @include mobile {
+      padding: 0 16px;
+      height: 64px;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  &__logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: $primary-dark;
+    letter-spacing: -0.3px;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+    max-width: 400px;
+
+    @include mobile {
+      display: none;
+    }
+
+    input {
+      flex: 1;
+      height: 40px;
+      border: 1px solid rgba($primary-dark, 0.2);
+      border-right: none;
+      border-radius: $radius-sm 0 0 $radius-sm;
+      padding: 0 16px;
+      font-size: $font-size-sm;
+      color: $text-body;
+      background: $white;
+      outline: none;
+
+      &::placeholder { color: $text-muted; }
+      &:focus { border-color: $primary; }
+    }
+
+    button {
+      height: 40px;
+      width: 56px;
+      background: $primary;
+      border: none;
+      border-radius: 0 $radius-sm $radius-sm 0;
+      @include flex-center;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover { background: darken($primary, 8%); }
+
+      svg path, svg circle { stroke: white; }
+    }
+  }
+
+  &__nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    @include mobile {
+      gap: 12px;
+    }
+  }
+
+  &__docs-link {
+    font-size: $font-size-sm;
+    color: $text-body;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    @include mobile {
+      display: none;
+    }
+
+    &:hover { color: $primary; }
+  }
+
+  &__bell {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    @include flex-center;
+    position: relative;
+    color: $primary-dark;
+    transition: color 0.2s;
+
+    &:hover { color: $primary; }
+  }
+
+  &__user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+
+    &:hover .dashboard-layout__username { color: $primary; }
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+    @include flex-center;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__username {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $primary-dark;
+    transition: color 0.2s;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+    cursor: pointer;
+
+    @include mobile {
+      display: flex;
+    }
+
+    span {
+      width: 22px;
+      height: 2px;
+      background: $primary-dark;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    &--open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    &--open span:nth-child(2) {
+      opacity: 0;
+    }
+    &--open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  &__body {
+    display: flex;
+    margin-top: 80px;
+
+    @include mobile {
+      margin-top: 64px;
+    }
+  }
+
+  &__sidebar-overlay {
+    display: none;
+
+    @include mobile {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 89;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+
+      &--visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  &__sidebar {
+    width: $sidebar-width;
+    min-height: calc(100vh - 80px);
+    background: $white;
+    border-right: 1px solid $border-color;
+    padding: 30px 0;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    overflow-y: auto;
+    z-index: 90;
+    transition: transform 0.3s ease;
+
+    @include mobile {
+      top: 64px;
+      min-height: calc(100vh - 64px);
+      transform: translateX(-100%);
+
+      &--open {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__main {
+    flex: 1;
+    margin-left: $sidebar-width;
+    min-height: calc(100vh - 80px);
+    padding: 40px 30px;
+
+    @include mobile {
+      margin-left: 0;
+      padding: 24px 16px;
+    }
+
+    @include tablet {
+      padding: 30px 20px;
+    }
+  }
+}
+
+// Sidebar Nav
+.sidebar-nav {
+  &__switch-org {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $text-body;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+
+    &:hover { color: $primary; }
+  }
+
+  &__section {
+    margin-bottom: 8px;
+  }
+
+  &__section-title {
+    font-size: $font-size-xs;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $text-secondary;
+    padding: 16px 30px 8px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 30px;
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+    text-decoration: none;
+
+    svg { color: $text-secondary; flex-shrink: 0; }
+
+    &:hover {
+      background: rgba($primary, 0.04);
+      color: $text-primary;
+      svg { color: $primary-dark; }
+    }
+
+    &--active {
+      background: rgba($primary, 0.06);
+      color: $text-primary;
+      font-weight: 600;
+      border-left-color: $primary;
+
+      svg { color: $primary; }
+    }
+  }
+
+  &__logout {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid $border-color;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 30px;
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      cursor: pointer;
+      transition: color 0.2s;
+      text-decoration: none;
+
+      svg { color: $text-secondary; }
+
+      &:hover { color: #e4033b; svg { color: #e4033b; } }
+    }
+  }
+
+  &__version {
+    padding: 12px 30px;
+    font-size: $font-size-xs;
+    color: $text-muted;
+  }
+}
