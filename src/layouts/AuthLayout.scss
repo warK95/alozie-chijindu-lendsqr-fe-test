@@ -3,7 +3,7 @@
 
 .auth-layout {
   min-height: 100vh;
-  background: $white;
+  background: #FFFFFF;
 
   &__logo {
     position: absolute;
@@ -23,7 +23,7 @@
   &__logo-text {
     font-size: 22px;
     font-weight: 700;
-    color: $primary-dark;
+    color: #213F7D;
     letter-spacing: -0.5px;
   }
 
@@ -38,7 +38,7 @@
   }
 
   &__illustration {
-    background: linear-gradient(135deg, #e8f8f8 0%, #f0f4ff 100%);
+    background: transparent;
     @include flex-center;
     padding: 40px;
     position: relative;
@@ -52,7 +52,7 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      background: rgba($primary, 0.08);
+      background: transparent;
     }
 
     @include mobile {
