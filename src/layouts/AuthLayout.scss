@@ -7,8 +7,10 @@
 
   &__logo {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 106px;
+    left: 97px;
+    width: 173.76px;
+    height: 36px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -21,10 +23,10 @@
   }
 
   &__logo-text {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 600;
     color: $primary-dark;
-    letter-spacing: -0.5px;
+    letter-spacing: 0.1px;
   }
 
   &__container {
