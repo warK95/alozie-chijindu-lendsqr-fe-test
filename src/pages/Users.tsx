@@ -12,6 +12,7 @@ import type { User, FilterState } from '../types';
 import { getStatusClass, generatePageNumbers } from '../utils';
 import './Users.scss';
 
+// Create an empty filter of type FilterState
 const EMPTY_FILTERS: FilterState = {
   organization: '', username: '', email: '', date: '', phoneNumber: '', status: ''
 };
@@ -31,11 +32,14 @@ export const UsersPage: React.FC = () => {
   const [activeFilterCol, setActiveFilterCol] = useState<string | null>(null);
   const [activeActionMenu, setActiveActionMenu] = useState<string | null>(null);
 
+  // Append the saved states to the existing filter using the spread operator, to populate the filters useState variable.
   const [filters, setFilters] = useState<FilterState>({
     ...EMPTY_FILTERS,
     status: savedStatus,
     organization: savedOrg,
   });
+  
+  // Maintain state for appliedFilters
   const [appliedFilters, setAppliedFilters] = useState<FilterState>({
     ...EMPTY_FILTERS,
     status: savedStatus,
@@ -43,13 +47,18 @@ export const UsersPage: React.FC = () => {
   });
 
   const stats = getUserStats();
+
+  // Calculate the total pages possible based on the total number of users and pageSize useState variable.
   const totalPages = Math.ceil(total / pageSize);
 
   const loadUsers = useCallback(async () => {
     setLoading(true);
     try {
+      // call the fetchUsers function with the parameters of type FetchUsersParams.
       const result = await fetchUsers({ page: currentPage, pageSize, filters: appliedFilters });
+      // Populate the user state.
       setUsers(result.users);
+      // Populate the total user state
       setTotal(result.total);
     } finally {
       setLoading(false);
@@ -69,14 +78,20 @@ export const UsersPage: React.FC = () => {
     setActiveFilterCol(null);
   };
 
+  // Function to reset the filters to empty string values.
   const handleResetFilter = () => {
+    // Update the filters state to the EMPTY_FILTERS variable.
     setFilters(EMPTY_FILTERS);
+    // Update the appliedFilters state to the EMPTY_FILTERS variable.
     setAppliedFilters(EMPTY_FILTERS);
+    // Update the searchParam state to the first page and default pageSize.
     setSearchParams({ page: '1', pageSize: String(pageSize) });
+    // update the activeFilterCol state to null.
     setActiveFilterCol(null);
   };
 
   const handlePageChange = (page: number) => {
+    // Update searchParams state when page changes.
     const params: Record<string, string> = { page: String(page), pageSize: String(pageSize) };
     if (appliedFilters.status) params.status = appliedFilters.status;
     if (appliedFilters.organization) params.organization = appliedFilters.organization;
@@ -84,14 +99,17 @@ export const UsersPage: React.FC = () => {
   };
 
   const handlePageSizeChange = (size: number) => {
+    // Update searchParams state when pageSize changes.
     const params: Record<string, string> = { page: '1', pageSize: String(size) };
     if (appliedFilters.status) params.status = appliedFilters.status;
     if (appliedFilters.organization) params.organization = appliedFilters.organization;
     setSearchParams(params);
   };
 
+  // creates an array of numbers to display the number of pages
   const pageNumbers = generatePageNumbers(currentPage, totalPages);
 
+  // The list of data columns 
   const COLUMNS = ['Organization', 'Username', 'Email', 'Phone Number', 'Date Joined', 'Status'];
 
   return (

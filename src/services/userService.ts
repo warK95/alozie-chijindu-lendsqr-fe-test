@@ -110,6 +110,7 @@ export interface FetchUsersResult {
 }
 
 export async function fetchUsers(params: FetchUsersParams): Promise<FetchUsersResult> {
+  // Timeout to simulate real network delay for API call.
   await new Promise((r) => setTimeout(r, 300));
   let filtered = ALL_USERS;
   const { filters } = params;
@@ -140,6 +141,7 @@ export async function fetchUsers(params: FetchUsersParams): Promise<FetchUsersRe
       );
     }
   }
+  // The total number of users after filtering
   const total = filtered.length;
   const start = (params.page - 1) * params.pageSize;
   const end = start + params.pageSize;
@@ -147,6 +149,7 @@ export async function fetchUsers(params: FetchUsersParams): Promise<FetchUsersRe
 }
 
 export async function fetchUserById(id: string): Promise<User | null> {
+  // Added delay to simulate real network delay when API is called.
   await new Promise((r) => setTimeout(r, 200));
   return ALL_USERS.find((u) => u.id === id) ?? null;
 }
@@ -156,8 +159,11 @@ export function getOrganizations(): string[] {
 }
 
 export function getUserStats() {
+  // Get all active users
   const active = ALL_USERS.filter((u) => u.status === 'Active').length;
+  // Generated a number of our users with loans using 80% of the entire users
   const withLoans = Math.floor(ALL_USERS.length * 0.8);
+  // Generated a number of our users with savings using 60% of the entire users
   const withSavings = Math.floor(ALL_USERS.length * 0.6);
   return {
     total: ALL_USERS.length,

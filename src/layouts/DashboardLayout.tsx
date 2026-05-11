@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../features/auth/AuthContext';
 import {
-  LogoIcon, SearchIcon, BellIcon, DashboardIcon, UsersIcon, GuarantorsIcon,
+  LogoIcon, SearchIcon, BellIcon, DashboardIcon, UsersIcon, GuarantorsIcon, BriefcaseIcon,
   LoansIcon, DecisionIcon, SavingsIcon, LoanRequestsIcon, WhitelistIcon, KarmaIcon,
   OrganizationIcon, LoanProductsIcon, SavingsProductsIcon, FeesIcon, TransactionsIcon,
   ServicesIcon, ServiceAccountIcon, SettlementsIcon, ReportsIcon, PreferencesIcon,
-  FeesPricingIcon, AuditLogsIcon, SystemsMessagesIcon, LogoutIcon, SwitchOrgIcon, ChevronDownIcon
+  FeesPricingIcon, AuditLogsIcon, SystemsMessagesIcon, LogoutIcon, ChevronDownIcon,
+  SwitchOrgIcon
 } from '../assets/icons';
+import avatar from '../assets/images/avatar.png';
+import briefcase from '../assets/images/briefcase.png';
 import './DashboardLayout.scss';
 
 interface NavItem {
@@ -28,7 +31,7 @@ const CUSTOMER_ITEMS: NavItem[] = [
 ];
 
 const BUSINESS_ITEMS: NavItem[] = [
-  { icon: OrganizationIcon, label: 'Organization' },
+  { icon: BriefcaseIcon, label: 'Organization' },
   { icon: LoanProductsIcon, label: 'Loan Products' },
   { icon: SavingsProductsIcon, label: 'Savings Products' },
   { icon: FeesIcon, label: 'Fees and Charges' },
@@ -102,7 +105,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             <BellIcon />
           </div>
           <div className="dashboard-layout__user-profile">
-            <div className="dashboard-layout__avatar">A</div>
+            <div className="dashboard-layout__avatar">
+              <img src={avatar} alt="User Avatar" />
+            </div>
             <span className="dashboard-layout__username">Adedeji</span>
             <ChevronDownIcon />
           </div>
@@ -127,9 +132,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
         <aside className={`dashboard-layout__sidebar${sidebarOpen ? ' dashboard-layout__sidebar--open' : ''}`}>
           <nav>
             <div className="sidebar-nav__switch-org">
-              <SwitchOrgIcon />
+              {/* <img className='sidebar-nav__briefcase' src={briefcase} alt="Briefcase" /> */}
+              <BriefcaseIcon />
               Switch Organization
-              <ChevronDownIcon />
+              <SwitchOrgIcon />
             </div>
 
             <Link
@@ -165,7 +171,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             </div>
           </nav>
         </aside>
-
+ 
         {/* Main content */}
         <main className="dashboard-layout__main">
           {children}

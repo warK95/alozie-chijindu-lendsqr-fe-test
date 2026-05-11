@@ -2,8 +2,8 @@
 @use '../styles/mixins' as *;
 
 .dashboard-layout {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   min-height: 100vh;
 
   &__navbar {
@@ -34,10 +34,10 @@
   }
 
   &__logo-text {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 600;
     color: $primary-dark;
-    letter-spacing: -0.3px;
+    letter-spacing: 0.1px;
 
     @include mobile {
       font-size: 16px;
@@ -62,7 +62,9 @@
       border-right: none;
       border-radius: $radius-sm 0 0 $radius-sm;
       padding: 0 16px;
+      font-family: 'Work Sans', 'Courier New';
       font-size: $font-size-sm;
+      font-weight: 400;
       color: $text-body;
       background: $white;
       outline: none;
@@ -76,7 +78,7 @@
       width: 56px;
       background: $primary;
       border: none;
-      border-radius: 0 $radius-sm $radius-sm 0;
+      border-radius: 0 $radius-md $radius-md 0;
       @include flex-center;
       cursor: pointer;
       transition: background 0.2s;
@@ -98,10 +100,14 @@
   }
 
   &__docs-link {
+    font-family: 'Roboto';
+    font-weight: 400;
     font-size: $font-size-sm;
-    color: $text-body;
+    color: $text-primary;
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-underline-offset: 0px;
+    text-decoration-style:solid;
+    text-decoration-thickness: 0px;
 
     @include mobile {
       display: none;
@@ -152,8 +158,11 @@
   }
 
   &__username {
+    font-family: 'Work Sans', 'Courier New';
     font-size: $font-size-sm;
-    font-weight: 600;
+    font-weight: 500;
+    max-width: 58px;
+    max-height: 19px;
     color: $primary-dark;
     transition: color 0.2s;
 
@@ -194,6 +203,7 @@
 
   &__body {
     display: flex;
+    flex: 1;
     margin-top: 80px;
 
     @include mobile {
@@ -223,7 +233,8 @@
 
   &__sidebar {
     width: $sidebar-width;
-    min-height: calc(100vh - 80px);
+    // min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
     background: $white;
     border-right: 1px solid $border-color;
     padding: 30px 0;
@@ -236,7 +247,8 @@
 
     @include mobile {
       top: 64px;
-      min-height: calc(100vh - 64px);
+      // min-height: calc(100vh - 64px);
+      height: calc(100vh - 64px);
       transform: translateX(-100%);
 
       &--open {
@@ -248,7 +260,8 @@
   &__main {
     flex: 1;
     margin-left: $sidebar-width;
-    min-height: calc(100vh - 80px);
+    // min-height: calc(100vh - 80px);
+    width: 0;
     padding: 40px 30px;
 
     @include mobile {
@@ -277,6 +290,12 @@
     transition: color 0.2s;
 
     &:hover { color: $primary; }
+  }
+
+  &__briefcase {
+    max-width: 16px;
+    max-height: 16px;
+    flex-shrink: 0;
   }
 
   &__section {

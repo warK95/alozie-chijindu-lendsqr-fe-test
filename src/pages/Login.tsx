@@ -24,17 +24,22 @@ export const LoginPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // call validate function to check for errors
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
+    // Since no errors from validate function, clear any previous errors and set loading state
     setErrors({});
     setLoading(true);
+
+    // wrap login call in try/catch to handle any unexpected errors
     try {
+      // call login function from auth context and check if it was successful
       const success = await login(email, password);
       if (success) {
-        navigate('/dashboard');
+        navigate('/users');
       } else {
         setErrors({ general: 'Invalid credentials. Please try again.' });
       }
