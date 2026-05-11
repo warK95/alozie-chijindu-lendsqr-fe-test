@@ -221,7 +221,9 @@ export const UsersPage: React.FC = () => {
             </table>
           </div>
 
-          {/* Footer */}
+          
+        </div>
+        {/* Footer */}
           <div className="users-page__footer">
             <div className="users-page__per-page">
               Showing
@@ -272,7 +274,6 @@ export const UsersPage: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
       </div>
     </DashboardLayout>
   );
