@@ -316,7 +316,7 @@
     align-items: center;
     gap: 12px;
     padding: 12px 30px;
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     color: $text-secondary;
     cursor: pointer;
     border-left: 3px solid transparent;
@@ -345,14 +345,15 @@
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid $border-color;
+    font-weight: 400;
 
     a {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 12px 30px;
-      font-size: $font-size-sm;
-      color: $text-secondary;
+      font-size: $font-size-base;
+      color: $text-primary;
       cursor: pointer;
       transition: color 0.2s;
       text-decoration: none;
@@ -366,6 +367,6 @@
   &__version {
     padding: 12px 30px;
     font-size: $font-size-xs;
-    color: $text-muted;
+    color: $text-primary;
   }
 }

@@ -4,7 +4,7 @@
 .users-page {
   &__title {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     color: $primary-dark;
     margin-bottom: 24px;
   }
@@ -41,7 +41,7 @@
   }
 
   &__stat-label {
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
     font-weight: 500;
     letter-spacing: 0.04em;
     color: $text-secondary;
@@ -49,7 +49,7 @@
   }
 
   &__stat-value {
-    font-size: clamp(22px, 3vw, 30px);
+    font-size: clamp(22px, 3vw, 24px);
     font-weight: 600;
     color: $primary-dark;
     line-height: 1;
@@ -186,16 +186,16 @@
     align-items: center;
     gap: 8px;
     font-size: $font-size-sm;
-    color: $text-body;
+    color: $text-secondary;
   }
 
   &__per-page-select {
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba($primary-dark, 0.06);
+    background: rgba($select-bg, 0.8);
     border-radius: $radius-sm;
-    padding: 4px 10px;
+    padding: 0px;
     font-size: $font-size-sm;
     font-weight: 600;
     color: $primary-dark;
@@ -204,10 +204,13 @@
     outline: none;
 
     select {
-      background: none;
-      border: none;
+      background: transparent;
+      border-right-width: 10px;
+      border-color: transparent;
       font-size: $font-size-sm;
-      font-weight: 600;
+      font-weight: 500;
+      padding: 4px 12px 4px 8px;
+      border-radius: $radius-sm;
       color: $primary-dark;
       cursor: pointer;
       outline: none;

@@ -5,7 +5,8 @@ import { FilterPopover } from '../features/users/FilterPopover';
 import { ActionMenu } from '../features/users/ActionMenu';
 import {
   UsersStatIcon, ActiveUsersStatIcon, LoansStatIcon, SavingsStatIcon,
-  FilterIcon, DotsIcon, ChevronLeftIcon, ChevronRightIcon
+  FilterIcon, DotsIcon, ChevronLeftIcon, ChevronRightIcon,
+  ChevronDownIcon
 } from '../assets/icons';
 import { fetchUsers, getUserStats } from '../services/userService';
 import type { User, FilterState } from '../types';
