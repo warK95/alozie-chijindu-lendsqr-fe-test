@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useOnClickOutside } from '../../hooks';
 import type { FilterState } from '../../types';
 import { getOrganizations } from '../../services/userService';
+import { CalendarIcon } from '../../assets/icons';
 
 interface FilterPopoverProps {
   filters: FilterState;
@@ -60,7 +61,7 @@ export const FilterPopover: React.FC<FilterPopoverProps> = ({
         />
       </div>
 
-      <div className="filter-popover__field">
+      <div className="filter-popover__field filter-popover__field--date">
         <label>Date</label>
         <input
           className="filter-popover__input-date"
@@ -68,6 +69,7 @@ export const FilterPopover: React.FC<FilterPopoverProps> = ({
           value={filters.date}
           onChange={(e) => update('date', e.target.value)}
         />
+        <CalendarIcon className="filter-popover__calendar-icon" />
       </div>
 
       <div className="filter-popover__field">

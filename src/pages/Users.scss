@@ -284,7 +284,9 @@
   }
 
   &__field {
+    position: relative;
     display: flex;
+    // align-items: center;
     flex-direction: column;
     gap: 6px;
     margin-bottom: 16px;
@@ -294,6 +296,13 @@
       font-weight: 500;
       color: $text-body;
     }
+
+    &--date {
+      position: relative;
+
+      @include mobile {
+      }
+    }
   }
 
   &__input,
@@ -301,7 +310,7 @@
     width: 100%;
     height: 40px;
     border: 1px solid rgba($primary-dark, 0.15);
-    border-radius: $radius-sm;
+    border-radius: $radius-md;
     padding: 0 12px;
     font-size: $font-size-sm;
     color: $text-body;
@@ -318,15 +327,43 @@
     height: 40px;
     border: 1px solid rgba($primary-dark, 0.15);
     border-radius: $radius-sm;
-    padding: 0 12px;
+    padding: 0 40px 0 12px;
     font-size: $font-size-sm;
     color: $text-body;
     outline: none;
     background: white;
     cursor: pointer;
     transition: border-color 0.2s;
+    // To remove the default calendar icon in some browsers
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
     &:focus { border-color: $primary; }
+
+    // Hide native Chrome calendar icon
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    // Optional: hide clear button
+    &::-webkit-clear-button {
+      display: none;
+    }
+  }
+
+  &__calendar-icon {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
   }
 
   &__actions {
