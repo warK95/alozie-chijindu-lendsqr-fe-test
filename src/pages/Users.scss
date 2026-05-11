@@ -96,7 +96,7 @@
 
     tbody tr {
       transition: background 0.15s;
-
+      
       &:hover { background: rgba($primary, 0.02); }
       &:last-child td { border-bottom: none; }
     }
@@ -243,7 +243,7 @@
 
     &--active {
       background: rgba($primary-dark, 0.1);
-      color: $primary-dark;
+      color: $text-secondary;
       font-weight: 600;
     }
 
