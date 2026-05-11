@@ -109,6 +109,22 @@ export interface FetchUsersResult {
   total: number;
 }
 
+/**
+ * @description This function simulates fetching a list of users based on the provided parameters.
+ * It takes an object with pagination and optional filter parameters, applies the filters to the generated user data, and returns a paginated list of users along with the total count of users that match the filters. 
+ * The function includes a delay to mimic real network latency.
+ * @param params The full details of the fetch argument. See FetchUsersParams for more details.
+ * @returns A promise resolving to the fetched users and total count.
+ * @example
+ * import { fetchUsers } from 'userService';
+ * 
+ * try {
+ *  const { users, total } = await fetchUsers({ page: 1, pageSize: 20 });
+ *  console.log(users, total);
+ * } catch (error) {
+ *  console.error('Error fetching users:', error);
+ * }
+ */
 export async function fetchUsers(params: FetchUsersParams): Promise<FetchUsersResult> {
   // Timeout to simulate real network delay for API call.
   await new Promise((r) => setTimeout(r, 300));
@@ -148,6 +164,23 @@ export async function fetchUsers(params: FetchUsersParams): Promise<FetchUsersRe
   return { users: filtered.slice(start, end), total };
 }
 
+/**
+ * @description Fetches a user by their ID.
+ * This function simulates fetching a user by their ID. 
+ * It takes a user ID as a parameter and returns a promise that resolves to a User object or null if the user is not found. 
+ * The function includes a delay to mimic real network latency.
+ * @param id A number used for identifying a user from the list of Users[]
+ * @returns A promise of a User object.
+ * @example
+ * import { fetchUserById } from 'userService';
+ * 
+ * try {
+ *  const user = await fetchUserById('LSQ00000001');
+ *  console.log(user);
+ * } catch (error) {
+ *  console.error('Error fetching user:', error);
+ * }
+ */
 export async function fetchUserById(id: string): Promise<User | null> {
   // Added delay to simulate real network delay when API is called.
   await new Promise((r) => setTimeout(r, 200));
@@ -158,6 +191,12 @@ export function getOrganizations(): string[] {
   return ORGANIZATIONS;
 }
 
+/**
+ * @description This function simulates fetching user statistics based on the generated user data. 
+ * It calculates the total number of users, the number of active users, and estimates the number of users with loans and savings based on fixed percentages. 
+ * The function returns an object containing these statistics.
+ * @returns Simulated object data based on the count of all users: User[]
+ */
 export function getUserStats() {
   // Get all active users
   const active = ALL_USERS.filter((u) => u.status === 'Active').length;

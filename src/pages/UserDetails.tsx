@@ -20,12 +20,13 @@ const InfoField: React.FC<{ label: string; value: string }> = ({ label, value })
 );
 
 export const UserDetailsPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>(); // Get the user ID from the URL parameters using react-router's useParams hook.
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
+  // Use the custom useLocalStorage hook to manage localStorage for this user. The key is based on the user ID.
   const storage = useLocalStorage<User>(`user_${id}`);
 
   useEffect(() => {
