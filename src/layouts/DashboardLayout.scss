@@ -84,7 +84,6 @@
       cursor: pointer;
       transition: background 0.2s;
 
-      // &:hover { background: darken($primary, 8%); }
       &:hover { background: color.adjust($primary, $lightness: -8%); }
 
       svg path, svg circle { stroke: white; }

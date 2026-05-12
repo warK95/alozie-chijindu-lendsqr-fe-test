@@ -114,7 +114,7 @@ export const UserDetailsPage: React.FC = () => {
           <div className="user-details-page__profile">
             <div className="user-details-page__avatar-section">
               <div className="user-details-page__avatar">
-                <UserAvatarIcon />
+                <UserAvatarIcon className="user-details-page__avatar__icon" />
               </div>
               <div className="user-details-page__name-section">
                 <h2>{user.username}</h2>

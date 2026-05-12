@@ -52,6 +52,13 @@
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s;
+    @include mobile { 
+      padding: 0 10px;
+      font-size: $font-size-xs;
+      height: 30px;
+      font-weight: 400;
+      letter-spacing: 1%;
+    }
 
     &--blacklist {
       background: none;
@@ -116,6 +123,21 @@
     background: #E1E8F0;
     overflow: hidden;
     flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    @include mobile {
+      width: 60px;
+      height: 60px;
+    }
+    
+    &__icon {
+      width: 100px;
+      height: 100px;
+      @include mobile {
+        width: 60px;
+        height: 60px;
+      }
+    }
   }
 
   &__name-section {
@@ -150,13 +172,22 @@
       font-weight: 500;
       color: $text-secondary;
       margin-bottom: 8px;
+
+      @include mobile {
+       margin-top: 4px;
+      }
+      
     }
+    
   }
 
   &__stars {
     display: flex;
     gap: 2px;
     margin-bottom: 4px;
+    @include mobile {
+       margin-bottom: 0px;
+    }
   }
 
   &__balance-section {
@@ -204,6 +235,11 @@
     border-right: none;
     border-top: none;
 
+    @include mobile {
+      padding: 12px 16px 6px 16px;
+      font-size: $font-size-sm;
+    }
+
     &:hover { color: $primary-dark; }
 
     &--active {
@@ -223,7 +259,7 @@
     padding: 32px 24px;
 
     @include mobile {
-      padding: 20px 16px;
+      padding: 10px 8px;
     }
   }
 
