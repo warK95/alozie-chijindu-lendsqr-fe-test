@@ -12,6 +12,14 @@ import './UserDetails.scss';
 
 const TABS = ['General Details', 'Documents', 'Bank Details', 'Loans', 'Savings', 'App and System'];
 
+/**
+ * @description This component is used to display a single field of user information in the User Details page. 
+ * It takes a label and a value as props and renders them in a styled format. 
+ * The component ensures that if the value is missing, it shows a placeholder instead of leaving it blank.
+ * @param param0 The label of the data object.
+ * @param param1 The value of the data object associated with the label.
+ * @returns A div element that contains the label and value of a user detail field. The label is displayed in a smaller font size and lighter color, while the value is displayed in a larger font size and bolder weight. If the value is empty or null, it displays a dash (—) instead.
+ */
 const InfoField: React.FC<{ label: string; value: string }> = ({ label, value }) => (
   <div className="user-details-page__field">
     <span className="user-details-page__label">{label}</span>

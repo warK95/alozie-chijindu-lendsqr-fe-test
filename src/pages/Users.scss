@@ -1,5 +1,6 @@
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
+@use "sass:color";
 
 .users-page {
   &__title {
@@ -399,6 +400,6 @@
     cursor: pointer;
     transition: background 0.2s;
 
-    &:hover { background: darken($primary, 8%); }
+    &:hover { background: color.adjust($primary, $lightness: -8%); }
   }
 }

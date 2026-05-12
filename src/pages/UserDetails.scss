@@ -2,6 +2,9 @@
 @use '../styles/mixins' as *;
 
 .user-details-page {
+  margin: 0 24px;
+  @include mobile { margin: 0 8px; }
+
   &__back {
     display: inline-flex;
     align-items: center;
@@ -28,8 +31,8 @@
   }
 
   &__title {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: $font-size-xl;
+    font-weight: 500;
     color: $primary-dark;
   }
 
@@ -43,9 +46,9 @@
     height: 40px;
     padding: 0 20px;
     border-radius: $radius-sm;
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 10%;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s;
@@ -54,6 +57,7 @@
       background: none;
       border: 1px solid $status-blacklisted-text;
       color: $status-blacklisted-text;
+      border-radius: $radius-md;
 
       &:hover {
         background: rgba($status-blacklisted-text, 0.06);
@@ -63,6 +67,7 @@
     &--activate {
       background: none;
       border: 1px solid $primary;
+      border-radius: $radius-md;
       color: $primary;
 
       &:hover {
@@ -73,6 +78,7 @@
 
   &__card {
     @include card;
+    border: none;
     margin-bottom: 24px;
     overflow: hidden;
   }
@@ -83,7 +89,8 @@
     align-items: flex-end;
     gap: 32px;
     flex-wrap: wrap;
-    border-bottom: 1px solid $border-color;
+    // border-bottom: 1px solid $border-color;
+    margin-bottom: 8px;
 
     @include mobile {
       flex-direction: column;
@@ -114,26 +121,30 @@
   &__name-section {
     h2 {
       font-size: clamp(18px, 2.5vw, 22px);
-      font-weight: 600;
+      font-weight: 500;
       color: $primary-dark;
       margin-bottom: 4px;
     }
 
     p {
       font-size: $font-size-sm;
+      font-weight: 400;
       color: $text-secondary;
     }
   }
 
   &__divider {
-    width: 1px;
+    width: 2px;
     height: 80px;
-    background: $border-color;
+    background: rgba($border-color, 0.5);
+    margin-bottom: 4px;
 
     @include mobile { display: none; }
   }
 
   &__tier-section {
+    margin-bottom: 24px;
+
     h4 {
       font-size: $font-size-xs;
       font-weight: 500;
@@ -145,12 +156,14 @@
   &__stars {
     display: flex;
     gap: 2px;
+    margin-bottom: 4px;
   }
 
   &__balance-section {
+    margin-bottom: 16px;
     h3 {
       font-size: clamp(18px, 2.5vw, 22px);
-      font-weight: 700;
+      font-weight: 500;
       color: $primary-dark;
       margin-bottom: 4px;
     }
@@ -160,11 +173,13 @@
       color: $text-secondary;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      margin-bottom: 4px;
     }
   }
 
   &__tabs {
     display: flex;
+    justify-content: space-between;
     gap: 0;
     overflow-x: auto;
     padding: 0 24px;
@@ -176,9 +191,10 @@
   }
 
   &__tab {
-    padding: 16px 20px;
-    font-size: $font-size-sm;
-    color: $text-muted;
+    padding: 16px 20px 6px 20px;
+    font-size: $font-size-base;
+    font-weight: 400;
+    color: rgba($black, 0.8);
     cursor: pointer;
     white-space: nowrap;
     border-bottom: 3px solid transparent;
@@ -192,14 +208,18 @@
 
     &--active {
       color: $primary-dark;
-      font-weight: 600;
+      color: $primary;
       border-bottom-color: $primary;
     }
   }
 
   // Details sections
   &__details {
+    font-family: $font-family;
+    color: rgba($text-primary, 0.8);
+
     @include card;
+    border: none;
     padding: 32px 24px;
 
     @include mobile {
@@ -215,8 +235,8 @@
 
   &__section-title {
     font-size: $font-size-base;
-    font-weight: 600;
-    color: $primary-dark;
+    font-weight: 500;
+    color: rgba($text-primary, 1.0);
     margin-bottom: 24px;
     padding-bottom: 16px;
     border-bottom: 1px solid $border-color;
@@ -273,9 +293,9 @@
   }
 
   &__value {
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     font-weight: 500;
-    color: $text-body;
+    color: inherit;
     word-break: break-word;
   }
 
