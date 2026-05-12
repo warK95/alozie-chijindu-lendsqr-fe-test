@@ -1,5 +1,9 @@
 import type { User } from '../types';
 
+// Data generation constants and functions for simulating API responses. 
+// These are used to create a realistic set of user data for testing and development purposes, allowing us to simulate fetching users and their details without needing a real backend API.
+// The data was retrieved from the figma document with additional nigerian specific details added to make it more realistic. 
+// The generated data includes various properties such as organization, username, email, phone number, date joined, status, tier, account balance, bank name, account
 const ORGANIZATIONS = ['Lendsqr', 'Lendstar', 'Irorun', 'Fairmoney', 'Kuda', 'Carbon'];
 const FIRST_NAMES = ['Grace', 'Tosin', 'Debby', 'Adedeji', 'Chidi', 'Emeka', 'Fatima', 'Amara', 'Ngozi', 'Kemi', 'Yemi', 'Bola', 'Sola', 'Tunde', 'Wale', 'Seun', 'Taiwo', 'Kehinde', 'Funke', 'Shade'];
 const LAST_NAMES = ['Effiom', 'Ogana', 'Adesanya', 'Okonkwo', 'Adeyemi', 'Babatunde', 'Okafor', 'Adeleke', 'Nwosu', 'Eze', 'Ibrahim', 'Musa', 'Aliyu', 'Johnson', 'Williams'];
@@ -11,6 +15,13 @@ const EDUCATION = ['B.Sc', 'M.Sc', 'OND', 'HND', 'Ph.D', 'SSCE'];
 const EMPLOYMENT_STATUSES = ['Employed', 'Self-Employed', 'Unemployed', 'Student'];
 const RELATIONSHIPS = ['Sister', 'Brother', 'Parent', 'Spouse', 'Friend', 'Colleague'];
 
+
+/**
+ * @description This function creates a seeded random number generator based on a given seed value. 
+ * The generated random number generator will produce the same sequence of random numbers for the same seed, allowing for reproducibility in generating user data.
+ * @param seed The unique value used in generating that enables reproducibility.
+ * @returns A function that generates a random number.
+ */
 function seededRandom(seed: number): () => number {
   let s = seed;
   return () => {
@@ -19,10 +30,33 @@ function seededRandom(seed: number): () => number {
   };
 }
 
+/**
+ * Picks a random element from an array based on a random number generator.
+ * @param arr An array of type T.
+ * @param rand A function that generates a random number.
+ * @returns A random element from the array.
+ */
 function pickRandom<T>(arr: T[], rand: () => number): T {
   return arr[Math.floor(rand() * arr.length)];
 }
 
+// NOTE:
+// ******************************************************************************************************************************************************************************** //
+// I used this function to generate a list of 500 users with unique properties based on their index. The generated users are stored in the ALL_USERS array, which is used by the fetchUsers and fetchUserById functions to simulate fetching user data from an API.
+// "mocky.io" is not opening for me, so I had to generate the user data locally. This function ensures that the same index will always produce the same user data, which is useful for testing and development purposes.
+// "json-generator.com" only generates the json data, but I needed to generate the TypeScript code to create the user objects and the functions to fetch them. This approach allows me to have more control over the structure of the user data and how it is generated, while still simulating a realistic API response.
+// ******************************************************************************************************************************************************************************** //
+
+
+/**
+ * @description This function generates a user object with unique properties based on the provided index. 
+ * It uses a seeded random generator to ensure that the same index will always produce the same user data. 
+ * The generated user object includes various properties such as 
+ * id, organization, username, email, phone number, date joined, status, tier, account balance, bank name, account number, bvn, gender, marital status, 
+ * children, type of residence, level of education, employment status, sector of employment, duration of employment, office email, monthly income, loan repayment, social media handles, and guarantors.
+ * @param index A number used to generate a unique user based on the index. The index is used as a seed for the random generator to ensure that the same index will always produce the same user data.
+ * @returns A generated user object with unique properties based on the index.
+ */
 function generateUser(index: number): User {
   const rand = seededRandom(index * 31337 + 42);
   const firstName = pickRandom(FIRST_NAMES, rand);
@@ -49,7 +83,8 @@ function generateUser(index: number): User {
     id: `LSQ${String(index).padStart(8, '0')}`,
     organization: org,
     username: `${firstName} ${lastName}`,
-    email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${orgSlug}.com`,
+    email: `${firstName.toLowerCase()}@${orgSlug}.com`,
+    // email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${orgSlug}.com`,
     phoneNumber: `0${phoneBase}`,
     dateJoined: `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(month)-1]} ${parseInt(day)}, ${year} ${hour}:${minute} ${ampm}`,
     status,

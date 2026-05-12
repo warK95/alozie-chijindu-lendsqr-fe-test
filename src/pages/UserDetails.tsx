@@ -34,7 +34,7 @@ export const UserDetailsPage: React.FC = () => {
   const [notFound, setNotFound] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
-  // Use the custom useLocalStorage hook to manage localStorage for this user. The key is based on the user ID.
+  // Use the custom useLocalStorage hook to manage localStorage for a user. The key is based on the user ID.
   const storage = useLocalStorage<User>(`user_${id}`);
 
   useEffect(() => {

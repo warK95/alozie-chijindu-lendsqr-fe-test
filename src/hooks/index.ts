@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 /**
-  * A custom hook to detect clicks outside of a specified element.
+  * @description A custom hook to detect clicks outside of a specified element.
   * This hook takes a handler function as an argument, which will be called when a click is detected outside of the referenced element.
   * It returns a ref that should be attached to the element you want to monitor for outside clicks.
   * The hook adds event listeners for 'mousedown' and 'touchstart' events on the document, 
@@ -31,7 +31,7 @@ export function useOnClickOutside<T extends HTMLElement>(
 }
 
 /**
-  * A custom hook to manage localStorage with a specified key.
+  * @description A custom hook to manage localStorage with a specified key.
   * This hook provides three functions: get, set, and remove.
   * get: Retrieves the value from localStorage and parses it as JSON. Returns null if the item doesn't exist or if parsing fails.
   * set: Takes a value, stringifies it to JSON, and stores it in localStorage under the specified key. It handles any errors silently.
